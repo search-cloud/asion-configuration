@@ -33,4 +33,6 @@ discovery.zen:
   #
   minimum_master_nodes: 3
 
+bootstrap.system_call_filter: false
+
 
