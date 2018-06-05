@@ -2,7 +2,7 @@
 # If these important folders are left in their default locations, there is a high risk of them being deleted while upgrading Elasticsearch to a new version.
 # In production use, you will almost certainly want to change the locations of the data and log folder:
 path:
-  logs: /var/log/elasticsearch
+  logs: /opt/log/elasticsearch
   data: /opt/data/elasticsearch
 
 cluster.name: asion-elasticsearch-cluster
@@ -12,7 +12,7 @@ node.name: ${HOSTNAME}
 # Tip
 # In fact, more than one node can be started from the same $ES_HOME location on a single node. This can be useful for testing Elasticsearch’s ability to form clusters, but it is not a configuration recommended for production.
 # In order to communicate and to form a cluster with nodes on other servers, your node will need to bind to a non-loopback address. While there are many network settings, usually all you need to configure is network.host:
-network.host: ${HOSTNAME}
+network.host: ${HOSTNAME}.kfk.com
 # Port to bind to for incoming HTTP requests. Accepts a single value or a range. If a range is specified, the node will bind to the first available port in the range.
 # Defaults to 9200-9300.
 http.port: 9200-9300
@@ -33,6 +33,8 @@ discovery.zen:
   #
   minimum_master_nodes: 3
 
-bootstrap.system_call_filter: false
+bootstrap:
+  system_call_filter: false
+  memory_lock: true
 
 
